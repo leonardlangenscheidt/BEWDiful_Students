@@ -1,0 +1,55 @@
+def play_game
+#Declaring rules and introduction of player name
+puts "\nLadies and Gentlemen!"
+puts "\nThis is the grand number guessing game created by Leonard Langenscheidt."
+puts "What is your name, please?"
+name = gets.chomp
+puts "\nAaaaaaalright, #{name}! Let me explain the rules to you:"
+puts "You get three guesses to determine a random number between 1 and 10."
+puts "If you succeed, your wildest wishes will come true, but failure will not go unnoticed!"
+#Declaring random number and initilizing counter to control number of guesses
+solution = 1 + rand(10)
+counter = 1
+#Adding functionality to check for repeat guesses
+prior_guess = []
+#Starting guessing loop
+while counter < 4
+puts "\nThis is guess number #{counter}. Good luck!"
+if counter == 3
+puts "This is your last chance, so you better focus."
+else
+puts "You have #{4-counter} guesses left."
+end
+guess = gets.to_i
+#Making sure guess is valid and is not a repeat
+while guess>10 || guess<1
+puts "Please guess between 1 and 10"
+puts "This is still guess number #{counter}."
+guess = gets.to_i
+end
+while prior_guess.include? guess
+puts "You already guessed that! Try again."
+puts "This is still guess number #{counter}."
+guess = gets.to_i
+end
+#Adding to prior guess array
+prior_guess << guess
+#Outcome conditionals
+if guess != solution
+if guess > solution
+puts "That's too high!"
+else
+puts "That's too lower"
+end
+counter += 1
+if counter == 4
+puts "Unfortunately, that was your last chance. You lost! The number was #{solution}, but you didn't get it. Game over! It's all over!!!"
+end
+else
+puts "RIGHT ON!"
+puts "You won the game and I award you this medal of victory."
+counter += 3
+end
+end
+puts "\n"
+end
