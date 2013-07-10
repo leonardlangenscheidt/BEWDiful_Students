@@ -1,5 +1,5 @@
 class StoryBoard
-
+	@@again = "y"
 	@@board = []
 	
 	def self.add_story(story)
@@ -14,6 +14,10 @@ class StoryBoard
 
 	def self.board
 		@@board
+	end
+
+	def self.clear
+		@@board = []
 	end
 
 end

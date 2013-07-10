@@ -15,21 +15,27 @@ def show_story_board
   end
 end
 
+choice = "y"
 
 puts "\nWelcome to the New York Times Story Aggregator. Filter and display like cray!"
 
-Search.regular
+while choice=="y"
+	Search.regular
 
-add_remote_stories(Search.output)
+	add_remote_stories(Search.output)
 
-while StoryBoard.board == []
-  Search.clarify
-  add_remote_stories(Search.output)
+	while StoryBoard.board == []
+	  Search.clarify
+	  add_remote_stories(Search.output)
+	end
+
+
+	puts "\nThe NYT Story Aggregator has found the following matches:"
+	show_story_board
+
+	puts "\nThank you for using the New York Times Story Aggregator! Perform another search? y/n"
+	choice = gets.chomp
+	StoryBoard.clear
 end
 
-
-puts "\nThe NYT Story Aggregator has found the following matches:"
-show_story_board
-
-puts "\nThank you for using the New York Times Story Aggregator!"
 puts "\n"
